@@ -1,17 +1,33 @@
 package models
 
+import "time"
+
 type ListData struct {
 	Title string
 	Items []string
+	Time time.Time
 }
 
-func GetListData() ListData {
+func GetRootData() ListData {
 	return ListData {
-		Title: "List Data",
+		Title: "Root File",
 		Items: []string {
 			"First Item",
 			"Second Item",
 			"Third Item",
 		},
+		Time: time.Now(),
+	}
+}
+
+func GetAboutData() ListData {
+	return ListData {
+		Title: "About Me",
+		Items: []string {
+			"Computer Science Major",
+			"Information Systems Minor",
+			"Expected graduation: 2029",
+		},
+		Time: time.Now(),
 	}
 }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <title>{{ .Title }}</title>
+    </header>
+    <body>
+        <h1> Who Am I? </h1>
+
+        {{ if .Items }}
+
+        <ul>
+            {{ range .Items }}
+                <p>{{ . }}</p>
+            {{ end }}
+        </ul>
+
+        {{ else }}
+
+        <p>No about data provided!</p>
+
+        {{ end }}
+
+
+        <p>Page loaded at {{ .Time }}</p>
+    </body>
+</html>
+

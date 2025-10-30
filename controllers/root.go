@@ -6,8 +6,14 @@ import (
 	"github.com/Anythingsoup01/WebServer/models"
 )
 
-func handleRoot(w http.ResponseWriter, r *http.Request) {
+func HandleAbout(w http.ResponseWriter, r *http.Request) {
+	tpl := template.Must(template.ParseFiles("views/about.html"))
+	data := models.GetAboutData()
+	tpl.Execute(w, data);
+}
+
+func HandleRoot(w http.ResponseWriter, r *http.Request) {
 	tpl := template.Must(template.ParseFiles("views/index.html"))
-	data := models.GetListData()
+	data := models.GetRootData()
 	tpl.Execute(w, data);
 }
