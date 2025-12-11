@@ -1,27 +1,64 @@
 <!DOCTYPE html>
-<html>
-    <header>
-        <title>{{ .Title }}</title>
-    </header>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <link rel="stylesheet" href="ext/css/pico.min.css">
+    <title>{{ .Title }}</title>
+  </head>
     <body>
-        <h1> Who Am I? </h1>
+        <main class="container">
+            <nav>
+                <ul>
+                    <li><strong>{{ .Title }}</strong></li>
+                </ul>
+                <ul>
+                    {{ if .NavLinks }}
 
-        {{ if .Items }}
+                        {{ range .NavLinks }}
+                        <li>
+                            <a href="{{ .Link }}">{{ .Description }}</a>
+                        </li>
+                        {{ end }}
 
-        <ul>
-            {{ range .Items }}
-                <p>{{ . }}</p>
+                    {{ end }}
+
+                </ul>
+            </nav>
+
+           <div class="grid">
+            {{ if .DivItems }}
+                {{ range .DivItems }}
+                    {{ if eq .DivType 0 }}
+                        <article>
+                        {{ .Description }}
+                        </article>
+                    {{end}}
+                {{ end }}
+            {{end}}
+            </div>
+
+            <div class="grid">
+            {{ if .DivItems }}
+                {{ range .DivItems }}
+                    {{ if eq .DivType 1 }}
+                        <article>
+                        <a href="{{ .SiteLink }}">
+                            <button type="submit">
+                                <img src="{{ .ImageLink }}" alt="404 - Image Not Found">
+                            </button>
+                            </a>
+                            {{ .Description }}
+                        </article>
+                    {{end}}
+                {{ end }}
             {{ end }}
-        </ul>
-
-        {{ else }}
-
-        <p>No about data provided!</p>
-
-        {{ end }}
-
-
-        <p>Page loaded at {{ .Time }}</p>
+            </div>
+        </main>
+        <footer>
+            <p>Page loaded at {{ .Time }}</p>
+        </footer>
     </body>
 </html>
 
